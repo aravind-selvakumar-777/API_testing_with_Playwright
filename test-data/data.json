@@ -1,0 +1,24 @@
+{
+    "postPayload": {
+        "name": "Apple MacBook Pro 423",
+        "data": {
+            "year": 2079,
+            "price": 9849.99,
+            "CPU model": "Intel Core i15",
+            "Hard disk size": "3 TB"
+        }
+    },
+    "putpayload": {
+        "name": "Apple MacBook Pro 43",
+        "data": {
+            "year": 2039,
+            "price": 9849.99,
+            "CPU model": "Intel Core i15",
+            "Hard disk size": "3 TB",
+            "RAM": "512 mb"
+        }
+    },
+    "patchPayload": {
+        "name": "Apple MacBook Pro 420(UPDATED NOW)"
+    }
+}
