@@ -1,5 +1,5 @@
 const { test, expect, request } = require('@playwright/test');
-const payload = require('../test-data/data.json')
+const payload = require('../test-data/data.json');
 
 test.describe('REST API TESTS', function () {
     let apiContext;
@@ -7,16 +7,16 @@ test.describe('REST API TESTS', function () {
         apiContext = await request.newContext({
             baseURL: 'https://api.restful-api.dev'
         });
-    })
+    });
     test.afterEach(async function () {
         await apiContext.dispose();
-    })
+    });
     test('GET all request', async () => {
         const response = await apiContext.get('/objects');
         const responseJSON = await response.json();
         expect(await response.status()).toBe(200)
         expect(responseJSON.some(itemName => itemName.name === 'Apple iPhone 12 Pro Max')).toBeTruthy();
-    })
+    });
 
     test('GET single request with search paramter', async () => {
         const response = await apiContext.get('/objects', {
@@ -28,7 +28,7 @@ test.describe('REST API TESTS', function () {
         expect(response.ok()).toBeTruthy()
         expect(await response.status()).toBe(200)
         expect(responseJSON[0].name).toEqual('Apple MacBook Pro 16');
-    })
+    });
 
     test('POST request', async () => {
         const response = await apiContext.post('/objects', {
@@ -43,7 +43,7 @@ test.describe('REST API TESTS', function () {
         expect(responseJSON).toHaveProperty('name', 'Apple MacBook Pro 423');
         const currentDate = new Date().toISOString().split('T')[0];
         expect(responseJSON.createdAt).toContain(currentDate)
-    })
+    });
 
     test('PUT request', async () => {
         //CREATING DATA TO BE UPDATED WITH PUT
@@ -69,7 +69,7 @@ test.describe('REST API TESTS', function () {
         expect(responseJSON.data).toHaveProperty('RAM', '512 mb');
         const currentDate = new Date().toISOString().split('T')[0];
         expect(responseJSON.updatedAt).toContain(currentDate)
-    })
+    });
 
     test('PATCH request', async () => {
         //CREATING DATA TO BE UPDATED WITH PATCH
@@ -95,7 +95,7 @@ test.describe('REST API TESTS', function () {
         expect(responseJSON).toHaveProperty('name', 'Apple MacBook Pro 420(UPDATED NOW)');
         const currentDate = new Date().toISOString().split('T')[0];
         expect(responseJSON.updatedAt).toContain(currentDate)
-    })
+    });
 
     test('DELETE request', async () => {
         //CREATING DATA TO BE DELETED
@@ -122,6 +122,6 @@ test.describe('REST API TESTS', function () {
         });
         const res = await getResponse.json();
         expect(res).toEqual([])
-    })
-})
+    });
+});
 
