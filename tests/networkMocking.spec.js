@@ -88,5 +88,14 @@ test.describe('To perform NETWORK MOCKING with APIs', function () {
         expect(response['body'].every(name => name.title != `Harry Potter and the Sorcerer's Stone`)).toBeTruthy();
         expect(response['body'][0].title).toContain('ERROR')
     });
+
+    test('Aborting requests', async ({ page }) => {
+        await page.route('**/books', route => route.abort());
+        await expect(page.evaluate(() => {
+            return fetch('https://potterapi-fedeperin.vercel.app/en/books');
+        })).rejects.toThrow('Failed to fetch');
+    });
+
+
 });
 
