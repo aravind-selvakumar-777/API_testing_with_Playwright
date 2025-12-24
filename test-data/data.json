@@ -20,5 +20,17 @@
     },
     "patchPayload": {
         "name": "Apple MacBook Pro 420(UPDATED NOW)"
+    },
+    "getQuery": {
+        "query": "query {userById(id: 1) {name , email}}"
+    },
+    "postQuery": {
+        "query": "mutation {\n  createPost(\n    post: {title: \"Green\", body: \"Grass is greener in this side\", userId: 47}\n  ) {\n    id\n    title\n    body\n  }\n}\n"
+    },
+    "putQuery": {
+        "query": "mutation {\n  updatePost(postId: 1, post: {title: \"Greeny\"}) {\n    id\n    title\n  }\n}\n"
+    },
+    "deleteQuery": {
+        "query": "mutation {\n  deletePost(postId: 1)\n}\n"
     }
 }
